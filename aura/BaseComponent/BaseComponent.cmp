@@ -4,12 +4,14 @@
 >
     <!-- register the component event template-->
     <aura:registerEvent name="ComponentEvent" type="c:ComponentEvent"/>
-
-    <!-- navigation service component-->
-    <lightning:navigation aura:id="navService"/>
     
     <aura:attribute name="baseComponentScriptsLoaded" type="Boolean" default="false" />
     <aura:attribute name="scriptsLoaded" type="Boolean" default="true" />
+
+    <!-- navigation service component-->
+    <lightning:navigation aura:id="navService" />
+    <!-- workspaceAPI service component-->
+    <lightning:workspaceAPI aura:id="workspace" />
  
     {!v.body}
 </aura:component>

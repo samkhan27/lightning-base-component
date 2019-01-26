@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Component Event template">
+    <aura:attribute access="public" name="type" type="String"/>    
+    <aura:attribute access="public" name="payload" type="Object"/>    
+</aura:event>

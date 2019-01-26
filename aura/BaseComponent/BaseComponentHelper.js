@@ -5,20 +5,6 @@
             && component.get('v.scriptsLoaded') === true;
     },
 
-    // Type checker utility functions to introduce consistency in JavaScripts eccentric type checking
-    isNull: function (obj) { return obj === null; },
-    isUndefined: function (obj) { return $A.util.isUndefined(obj); },
-    isUndefinedOrNull: function (obj) { return $A.util.isUndefinedOrNull(obj); },
-    isEmpty: function (obj) { return $A.util.isEmpty(obj); },
-    isNotEmpty: function (obj) { return !this.isEmpty(obj); },
-    isObject: function (obj) { return $A.util.isObject(obj); },
-    isArray: function (obj) { return $A.util.isArray(obj); },
-    isFunction: function (obj) { return typeof obj === 'function' },
-    isString: function (obj) { return typeof obj === 'string' },
-    isBoolean: function (obj) { return typeof obj === 'boolean' },
-    isNaN: function (obj) { return typeof obj === 'number' && isNaN(obj); },
-    isNumber: function (obj) { return typeof obj === 'number' && !isNaN(obj); },
-    
     // Array mutation helpers
     removeAtIndex: function (array, index) {
         if (index > -1) {
@@ -130,6 +116,14 @@
     getURL : function(component) {
         const navService = component.getSuper().find("navService");
         return navService.generateUrl;
+    },
+
+    getNavService: function (component) {
+        return component.getSuper().find("navService");
+    },
+
+    getWorkspaceApi: function (component) {
+        return component.getSuper().find("workspace");
     },
                 
     navigate : function(component, pageReference, replace) {
