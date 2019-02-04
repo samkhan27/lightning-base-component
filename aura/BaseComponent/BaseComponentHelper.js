@@ -53,6 +53,44 @@
 		compEvent.fire();
   	},
     
+	fireApplicationEvent : function(component, typeName, payload) {
+		let appEvent = $A.get("e.c:ApplicationEvent");
+		appEvent.setParams({
+			"type": typeName,
+			"payload": payload
+		});
+		appEvent.fire();
+    },
+
+	generateUUID : function () {
+        var d = new Date().getTime();
+        //if performance.now is available use it for its high-precision timer
+        if(window.performance && typeof window.performance.now === "function"){
+            d += performance.now();
+        }
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = (d + Math.random()*16)%16 | 0;
+            d = Math.floor(d/16);
+            return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+		});
+        return uuid;
+    },
+
+    // Type checker utility functions to introduce consistency in JavaScripts eccentric type checking
+	// Modified from: https://github.com/sgupta9591/lightning-application-container/blob/master/src/aura/ComponentBase/ComponentBaseHelper.js
+	isNull: function(obj) { return obj === null; },
+	isUndefined: function(obj) { return $A.util.isUndefined(obj); },
+	isUndefinedOrNull: function(obj) { return $A.util.isUndefinedOrNull(obj); },
+	isEmpty: function(obj) { return $A.util.isEmpty(obj); },
+	isNotEmpty: function(obj) { return !this.isEmpty(obj); },
+	isObject: function(obj) { return $A.util.isObject(obj); },
+	isArray: function(obj) { return $A.util.isArray(obj); },
+	isFunction: function(obj) { return typeof obj === 'function' },
+	isString: function(obj) { return typeof obj === 'string' },
+	isBoolean: function(obj) { return typeof obj === 'boolean' },
+	isNaN: function(obj) { return typeof obj === 'number' && isNaN(obj); },
+	isNumber: function(obj) {  return typeof obj === 'number' && !isNaN(obj); },
+
     refreshView: function () {
         $A.get('e.force:refreshView').fire();
     }
