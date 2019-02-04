@@ -52,6 +52,10 @@
 		});
 		compEvent.fire();
   	},
+    
+    refreshView: function () {
+        $A.get('e.force:refreshView').fire();
+    }
 
 	executeAction: function (action) {
         return new Promise(function (resolve, reject) {
